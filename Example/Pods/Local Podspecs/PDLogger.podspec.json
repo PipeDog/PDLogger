@@ -1,0 +1,22 @@
+{
+  "name": "PDLogger",
+  "version": "0.1.0",
+  "summary": "A short description of PDLogger.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/liang/PDLogger",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "liang": "1007279249@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/liang/PDLogger.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "PDLogger/Classes/**/*"
+}

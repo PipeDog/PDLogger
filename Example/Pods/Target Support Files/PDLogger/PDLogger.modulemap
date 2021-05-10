@@ -1,0 +1,6 @@
+framework module PDLogger {
+  umbrella header "PDLogger-umbrella.h"
+
+  export *
+  module * { export * }
+}
