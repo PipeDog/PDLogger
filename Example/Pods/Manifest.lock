@@ -1,5 +1,10 @@
 PODS:
-  - PDLogger (0.1.0)
+  - PDLogger (0.1.0):
+    - PDLogger/Browser (= 0.1.0)
+    - PDLogger/Core (= 0.1.0)
+  - PDLogger/Browser (0.1.0):
+    - PDLogger/Core
+  - PDLogger/Core (0.1.0)
 
 DEPENDENCIES:
   - PDLogger (from `../`)
@@ -9,7 +14,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PDLogger: 2951408b8ef59843e6d4c43f140d6d4e30ce04c5
+  PDLogger: a446070bc795012b799aff43fed5314703a874ba
 
 PODFILE CHECKSUM: 588a24b5a46419155aa74f10a51428a88009714b
 

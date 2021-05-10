@@ -58,7 +58,7 @@
     NSString *filePath = [_rootPath stringByAppendingPathComponent:filename];
     
     __block BOOL result;
-    dispatch_sync(_queue, ^{
+    dispatch_sync(self.queue, ^{
         result = [[NSFileManager defaultManager] createFileAtPath:filePath contents:nil attributes:nil];
     });
 
@@ -74,7 +74,7 @@
     __block BOOL result;
     
     @weakify(self)
-    dispatch_sync(_queue, ^{
+    dispatch_sync(self.queue, ^{
         @strongify(self)
         result = [self _removeFile:fileInfo];
     });
@@ -86,7 +86,7 @@
     __block BOOL result;
     
     @weakify(self)
-    dispatch_async(_queue, ^{
+    dispatch_async(self.queue, ^{
         @strongify(self)
         result = [self _removeAllFiles];
     });
@@ -158,7 +158,7 @@
         __block NSArray<NSString *> *filenames;
                 
         NSString *rootPath = _rootPath;
-        dispatch_sync(_queue, ^{
+        dispatch_sync(self.queue, ^{
             filenames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:rootPath error:NULL];
         });
         

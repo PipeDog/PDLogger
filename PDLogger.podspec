@@ -29,14 +29,23 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-
-  s.source_files = 'PDLogger/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'PDLogger' => ['PDLogger/Assets/*.png']
-  # }
+  s.subspec 'Core' do |cc|
+    cc.source_files = [
+      'PDLogger/Classes/Core/**/**/**/*.{h,m,mm}',
+      'PDLogger/Classes/Core/**/**/*.{h,m,mm}',
+      'PDLogger/Classes/Core/**/*.{h,m,mm}',
+      'PDLogger/Classes/Core/*.{h,m,mm}',
+    ]
+  end
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.subspec 'Browser' do |cc|
+    cc.source_files = [
+      'PDLogger/Classes/Browser/**/**/**/*.{h,m,mm}',
+      'PDLogger/Classes/Browser/**/**/*.{h,m,mm}',
+      'PDLogger/Classes/Browser/**/*.{h,m,mm}',
+      'PDLogger/Classes/Browser/*.{h,m,mm}',
+    ]
+    cc.dependency 'PDLogger/Core'
+  end
 end

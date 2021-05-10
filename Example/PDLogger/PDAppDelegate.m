@@ -7,12 +7,18 @@
 //
 
 #import "PDAppDelegate.h"
+#import <PDLogger/PDLogger.h>
+#import <PDMMapFileLogger.h>
 
 @implementation PDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    PDMMapFileLogger *mmapLogger = [[PDMMapFileLogger alloc] init];
+    [PDLogger defaultLogger].fileLogger = mmapLogger;
+    
     return YES;
 }
 

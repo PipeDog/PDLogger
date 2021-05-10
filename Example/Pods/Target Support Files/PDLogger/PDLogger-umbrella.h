@@ -10,6 +10,10 @@
 #endif
 #endif
 
+#import "PDLogFileListController.h"
+#import "PDLogPreviewController.h"
+#import "PDLogBrowserController.h"
+#import "PDLGBrowserUtil.h"
 #import "PDDefaultFileLogger.h"
 #import "PDMMapFileLogger.h"
 #import "PDDefaultLogFormatter.h"

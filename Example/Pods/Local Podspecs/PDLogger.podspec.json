@@ -18,5 +18,29 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "PDLogger/Classes/**/*"
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": [
+        "PDLogger/Classes/Core/**/**/**/*.{h,m,mm}",
+        "PDLogger/Classes/Core/**/**/*.{h,m,mm}",
+        "PDLogger/Classes/Core/**/*.{h,m,mm}",
+        "PDLogger/Classes/Core/*.{h,m,mm}"
+      ]
+    },
+    {
+      "name": "Browser",
+      "source_files": [
+        "PDLogger/Classes/Browser/**/**/**/*.{h,m,mm}",
+        "PDLogger/Classes/Browser/**/**/*.{h,m,mm}",
+        "PDLogger/Classes/Browser/**/*.{h,m,mm}",
+        "PDLogger/Classes/Browser/*.{h,m,mm}"
+      ],
+      "dependencies": {
+        "PDLogger/Core": [
+
+        ]
+      }
+    }
+  ]
 }
