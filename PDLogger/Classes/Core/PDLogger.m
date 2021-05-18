@@ -17,7 +17,7 @@
 
 @interface PDLogger () <PDFileLoggerDelegate>
 
-@property (nonatomic, assign) BOOL enableLog;
+@property (atomic, assign) BOOL enableLog;
 
 @end
 
@@ -102,15 +102,11 @@
 }
 
 - (void)resume {
-    @synchronized (self) {
-        self.enableLog = YES;
-    }
+    self.enableLog = YES;
 }
 
 - (void)suspend {
-    @synchronized (self) {
-        self.enableLog = NO;
-    }
+    self.enableLog = NO;
 }
 
 - (void)forceReportLogs {
