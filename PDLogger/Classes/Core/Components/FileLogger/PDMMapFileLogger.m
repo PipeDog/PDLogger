@@ -84,7 +84,7 @@
         return name;
     }];
     
-    [PDExceptionHandler removeListener:self];
+    [PDExceptionHandler addListener:self];
 
     _fileCleaner = [[PDFileCleaner alloc] initWithPath:_logDirPath queue:_queue];
     _fileCleaner.costLimit = self.maxCacheSpace;
