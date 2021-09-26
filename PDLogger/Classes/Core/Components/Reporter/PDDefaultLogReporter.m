@@ -13,6 +13,27 @@
 
 static NSInteger const kPDLogReportSuccessStatusCode = 100000;
 
+@implementation PDLogReporterConfiguration
+
++ (PDLogReporterConfiguration *)defaultConfiguration {
+    static PDLogReporterConfiguration *__defaultConfiguration;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __defaultConfiguration = [[self alloc] init];
+    });
+    return __defaultConfiguration;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _timeoutInterval = 30.f;
+    }
+    return self;
+}
+
+@end
+
 @interface PDLogReportOperation : NSOperation
 
 @property (nonatomic, strong) NSURLSession *session;
@@ -75,24 +96,36 @@ static NSInteger const kPDLogReportSuccessStatusCode = 100000;
 
 @end
 
+@interface PDDefaultLogReporter ()
+
+@property (nonatomic, strong) NSString *baseUrl;
+@property (nonatomic, strong) NSString *urlPath;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *requestHeaders;
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
+
+@end
+
 @implementation PDDefaultLogReporter {
     NSURLSession *_session;
     NSOperationQueue *_queue;
 }
 
 - (instancetype)init {
+    return [self initWithConfiguration:[PDLogReporterConfiguration defaultConfiguration]];
+}
+
+- (instancetype)initWithConfiguration:(PDLogReporterConfiguration *)configuration {
     self = [super init];
     if (self) {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:configuration];
+        NSURLSessionConfiguration *URLSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:URLSessionConfiguration];
         _queue = [[NSOperationQueue alloc] init];
         _queue.maxConcurrentOperationCount = 1;
-        
-        // TODO: 更换 baseUrl 和 urlPath
-        _baseUrl = @"https://xxx.xxx";
-        _urlPath = @"/xxx";
-        _requestHeaders = nil;
-        _timeoutInterval = 30.f;
+
+        _baseUrl = [configuration.baseUrl copy];
+        _urlPath = [configuration.urlPath copy];
+        _requestHeaders = [configuration.requestHeaders copy];
+        _timeoutInterval = configuration.timeoutInterval;
     }
     return self;
 }
